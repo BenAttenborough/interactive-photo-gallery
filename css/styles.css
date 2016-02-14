@@ -1,0 +1,66 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	Interactive Photo Gallery
+Version:	0.0.1
+Author: 	@WebDesignerBen
+URI:		https://github.com/BenAttenborough/interactive-ghoto-gallery
+
+--------------------------------------------------------------------
+
+[Table of Contents]
+
+---GENERAL---
+---TYPOGRAPHY---
+---LAYOUT---
+---ELEMENTS---
+---MEDIA QUERIES---
+	---TABLET AND ABOVE---
+
+Note: Project employs mobile-first philosophy, main styles are for
+mobile then views are progressively enchanced for tablet and 
+desktop
+
+-------------------------------------------------------------------*/
+
+/*
+ *---GENERAL---
+ */
+
+* {
+	box-sizing: border-box;
+}
+
+/*
+ *---TYPOGRAPHY---
+ */
+
+h1, h2, h3, h4, p, a {
+	font-family: 'Merriweather', serif;
+}
+
+/*
+ *---LAYOUT---
+ */
+
+.main-container {
+	width: 95%;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 0 2.5%;
+}
+
+/*
+ *---ELEMENTS---
+ */
+
+/*
+ *---MEDIA QUERIES---
+ */
+
+ /*---TABLET AND ABOVE---*/
+
+@media (min-width: 760px) {
+
+
+}
