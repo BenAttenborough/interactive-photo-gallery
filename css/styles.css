@@ -14,6 +14,7 @@ URI:		https://github.com/BenAttenborough/interactive-ghoto-gallery
 ---TYPOGRAPHY---
 ---LAYOUT---
 ---ELEMENTS---
+---CLEARFIX---
 ---MEDIA QUERIES---
 	---TABLET AND ABOVE---
 
@@ -46,10 +47,14 @@ h1, h2, h3, h4, p, a {
  header {
  	width: 100%;
  	padding-top: 1px;
- 	border-bottom: solid 1px #000;
- 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	background-color: #fff;
+ 	-webkit-box-shadow: 0px 3px 5px 0px rgba(214,214,214,1);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(214,214,214,1);
+	box-shadow: 0px 3px 5px 0px rgba(214,214,214,1);
+	z-index: 100;
  }
 
 .main-container {
@@ -57,17 +62,50 @@ h1, h2, h3, h4, p, a {
 	max-width: 980px;
 	margin: 0 auto;
 	background-color: #fff;
+	margin-top: 80px;
 	padding: 0 2.5%;
 }
 
-.search-container-form {
+/* SEARCH */
+
+.search {
+	padding-top: 1px;
+ }
+
+.search__form {
 	text-align: center;
 	margin: 1em 0;
+}
+
+.search__form__input {
+	width: 460px;
+	font-size: 16pt;
 }
 
 /*
  *---ELEMENTS---
  */
+
+ .pictures {
+ 	text-align: center;
+ }
+
+.pictures ul {
+	padding: 0;
+}
+
+.pictures li {
+	list-style: none;
+	margin-bottom: 1em;
+}
+
+/* ===CLEARFIX=== */
+
+.clearfix::after {
+	content: " ";
+	display: table;
+	clear: both;
+}
 
 /*
  *---MEDIA QUERIES---
