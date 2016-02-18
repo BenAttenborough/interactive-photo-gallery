@@ -1,0 +1,33 @@
+console.log('main.js working');
+
+// Plan of action
+//
+// 1. Detect when user clicks on an image 
+// 	1.1 Select the image
+//  1.2 Add a click event
+// 2. Prevent default action and add new functionality
+//  2.1 Prevent default
+//	2.2 Add new functionality
+// 3. Create an overlay for image and show image on it
+//	3.1 Create overlay
+//  3.2 Select the overlay
+//	3.3 Display the overlay
+//  3.4 Select the image
+//  3.5 Display the image
+// 4. Show caption below the image
+//  4.1 Select the alt text
+//	4.2 Display the alt text
+// 5. Close image overlay on click
+
+
+// 1. Detect when user clicks on an image
+// 	1.1 Select the image
+
+//  1.2 Add a click event
+$(".pictures ul li a").click( function(){
+	// 2. Prevent default action and add new functionality
+	//  2.1 Prevent default
+	//	2.2 Add new functionality
+	console.log("Link clicked");
+	event.preventDefault();
+});
