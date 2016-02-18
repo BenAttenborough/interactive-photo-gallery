@@ -61,7 +61,6 @@ h1, h2, h3, h4, p, a {
 	width: 100%;
 	max-width: 980px;
 	margin: 0 auto;
-	padding: 0 60px;
 	background-color: #fff;
 	margin-top: 80px;
 }
@@ -93,7 +92,7 @@ h1, h2, h3, h4, p, a {
  }
 
 .pictures ul {
-	padding: 0;
+	padding: 30px 60px;
 }
 
 .pictures li {
@@ -123,17 +122,19 @@ h1, h2, h3, h4, p, a {
 
 @media (min-width: 500px) {
 
-	.pictures li {
-		width: 50px;
-		float: left;
-		margin-right: 30px;
+	.pictures ul {
+		padding: 30px;
 	}
 
-	/*.pictures li:nth-child( 2n+2 ) {
-		padding-right: 0;
-		padding-left: 30px;
-	}*/
+	.pictures li {
+		width: 50%;
+		float: left;
+		padding: 0 30px;
+	}
 
+	.search__form__input  {
+		width: 460px;
+	}
 }
 
 @media (min-width: 800px) {
@@ -141,16 +142,6 @@ h1, h2, h3, h4, p, a {
 	.pictures li {
 		width: 33.33333%;
 	}
-
-/*	.pictures li:nth-child( 2n+2 ) {
-		padding-right: 30px;
-		padding-left: 30px;
-	}
-
-	.pictures li:nth-child( 3n+3 ) {
-		padding-right: 0px;
-		padding-left: 30px;
-	}*/
 
 }
 
