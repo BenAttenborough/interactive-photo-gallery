@@ -109,10 +109,13 @@ h1, h2, h3, h4, p, a {
 
 /*
  * OVERLAY
+ * 
+ * A hidden overlay displayed using jQuery when a user clicks on an image
 */
 
 #overlay {
 	position: absolute;
+	display: none;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0);
