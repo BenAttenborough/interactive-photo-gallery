@@ -24,7 +24,7 @@ console.log('main.js working');
 // 5. Close image overlay on click
 
 var $overlay = $("<div id='overlay'></div>");
-var $image = $("<img>");
+var $image = $("<img src='img/01.jpg'>");
 var $caption = $("<p></p>");
 
 $overlay.append($image);
