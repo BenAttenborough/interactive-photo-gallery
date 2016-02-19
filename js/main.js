@@ -19,15 +19,20 @@ console.log('main.js working');
 //	4.2 Display the alt text
 // 5. Close image overlay on click
 
+var $overlay = $('<div id="overlay"></div>');
+var $image = $("<img>");
+var $caption = $("<p></p>");
 
 // 1. Detect when user clicks on an image
 // 	1.1 Select the image
 
 //  1.2 Add a click event
-$(".pictures ul li a").click( function(){
+$(".pictures a").click( function(){
 	// 2. Prevent default action and add new functionality
 	//  2.1 Prevent default
 	//	2.2 Add new functionality
 	console.log("Link clicked");
 	event.preventDefault();
+	
 });
+
