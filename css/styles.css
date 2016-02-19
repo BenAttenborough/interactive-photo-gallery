@@ -47,9 +47,6 @@ h1, h2, h3, h4, p, a {
  header {
  	width: 100%;
  	padding-top: 1px;
- 	position: fixed;
- 	top: 0;
- 	left: 0;
  	background-color: #fff;
  	-webkit-box-shadow: 0px 3px 5px 0px rgba(214,214,214,1);
 	-moz-box-shadow: 0px 3px 5px 0px rgba(214,214,214,1);
@@ -57,12 +54,16 @@ h1, h2, h3, h4, p, a {
 	z-index: 100;
  }
 
+ body {
+ 	position: relative;
+ }
+
 .main-container {
 	width: 100%;
 	max-width: 980px;
 	margin: 0 auto;
 	background-color: #fff;
-	margin-top: 80px;
+	margin-top: 30px;
 }
 
 /* SEARCH */
@@ -104,6 +105,19 @@ h1, h2, h3, h4, p, a {
 
 .pictures img {
 	width: 100%;
+}
+
+/*
+ * OVERLAY
+*/
+
+#overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0);
+	background-color: rgba(0,0,0,0.8);
+	z-index: 200;
 }
 
 /* ===CLEARFIX=== */
