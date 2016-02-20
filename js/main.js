@@ -89,15 +89,19 @@ $(".pictures a").click( function(){
 	imageIndex = $(this).parent().index();
 });
 
-// $("#overlay").click( function(){
-// 	$(this).hide();
-// });
+$("#overlay").click( function(){
+	$(this).hide();
+});
 
-$(".col-next a").click( function(){
+// $("#overlay").event.stopPropagation()
+
+$(".col-next a").click( function(event){
+	event.stopPropagation();
 	changeImage('fowards');
 });
 
-$(".col-prev a").click( function(){
+$(".col-prev a").click( function(event){
+	event.stopPropagation();
 	changeImage('backwards');
 });
 
