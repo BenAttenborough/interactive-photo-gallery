@@ -119,14 +119,38 @@ h1, h2, h3, h4, p, a {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0);
-	background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,0.9);
 	z-index: 200;
 }
 
-#overlay img {
+#overlay .col-prev,
+#overlay .col-next {
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+
+#overlay .col-main {
+	width: 60%;
+	float: left;
+}
+
+#overlay .col-main img {
+	/*display: block;*/
+	width: 100%;
+	margin-top: 10%;
+	/*margin: 10% auto;*/
+}
+
+#overlay .nav-btn {
 	display: block;
-	width: 400px;
-	margin: 10% auto;
+	margin: auto;
+	margin-top: 100%;
+}
+
+#overlay p {
+	text-align: center;
+	color: white;
 }
 
 /* ===CLEARFIX=== */

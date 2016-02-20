@@ -24,12 +24,21 @@ console.log('main.js working');
 // 5. Close image overlay on click
 
 var $overlay = $("<div id='overlay'></div>");
-var $image = $("<img src='img/01.jpg'>");
+var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/previousBtn.png' class='nav-btn'></a></div>");
+var $contentDiv = $("<div class='col-main clearfix'></div>");
+var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
+var $image = $("<img>");
 var $caption = $("<p></p>");
 
-$overlay.append($image);
+$contentDiv.append($image);
 
-$overlay.append($caption);
+$contentDiv.append($caption);
+
+$overlay.append($previousBtn);
+
+$overlay.append($contentDiv);
+
+$overlay.append($nextBtn);
 
 $("body").prepend($overlay);
 
@@ -41,9 +50,18 @@ $(".pictures a").click( function(){
 	// 2. Prevent default action and add new functionality
 	//  2.1 Prevent default
 	//	2.2 Add new functionality
-	console.log("Link clicked");
 	event.preventDefault();
-	$("#overlay").show();
+	var imageLocation = $(this).attr("href");
 	
+	$image.attr("src", imageLocation);
+
+	$("#overlay").show();
+
+	var captionText = $(this).children("img").attr("alt");
+	$caption.text(captionText);
+});
+
+$("#overlay").click( function(){
+	$(this).hide();
 });
 
