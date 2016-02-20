@@ -36,16 +36,35 @@ var $image = $("<img>");
 var $caption = $("<p></p>");
 var imageIndex;
 
+function changeImage(direction) {
+	event.preventDefault();
+	if (direction === 'backwards') {
+		if (imageIndex>0) {
+		imageIndex--;
+		} else {
+		imageIndex = $(".pictures li").length -1;
+		}
+	} else {
+		if (imageIndex<$(".pictures li").length -1) {
+		imageIndex++;
+		} else {
+		imageIndex = 0;
+		}
+	}
+	$imageData = $( $(".pictures li").get(imageIndex) );
+	$replacementImage = $imageData.children("a").attr("href");
+	$replacementAltText = $imageData.children("a").children("img").attr("alt");
+	$image.attr("src", $replacementImage);
+	// $image.attr("alt", $replacementAltText);
+	console.log($replacementAltText);
+	$caption.html($replacementAltText);
+};
+
 $contentDiv.append($image);
-
 $contentDiv.append($caption);
-
 $overlay.append($previousBtn);
-
 $overlay.append($contentDiv);
-
 $overlay.append($nextBtn);
-
 $("body").prepend($overlay);
 
 // 1. Detect when user clicks on an image
@@ -74,43 +93,11 @@ $(".pictures a").click( function(){
 // 	$(this).hide();
 // });
 
+$(".col-next a").click( function(){
+	changeImage('fowards');
+});
+
 $(".col-prev a").click( function(){
-	//  5.2 Add click event to the buttons
-	event.preventDefault();
-	console.log("Previous button clicked");
-	//We need to get the next image in the list
-	// $image.attr("src", "img/12.jpg");
-
-
-	//  5.3 When button clicked display previous or next image
-	//   5.3.1 Get the next/previous image using jquery
-	// Need to get the next image. So we can get the current image $(".col-main img").attr("src")
-	// Then we have to find that image within the "pictures ul li" div
-
-
-	currentElement = $(this);
-	console.log("Current element is: ");
-	console.log(currentElement);
-	parentElement = $(this).parent();
-	console.log("Parent element is: ");
-	console.log(parentElement);
-	nextElement = $(this).parent().next();
-	console.log("Next element is: ");
-	console.log(nextElement);
-	console.log("Image index: ");
-	console.log(imageIndex);
-
-	$replacementImage = $(".pictures li").get(imageIndex);
-	console.log("Replacement picture: ");
-	console.log($($replacementImage).children("a").attr("href"));
-
-	$replacementImage = $($(".pictures li")[imageIndex]).children("a").attr("href");
-	console.log("Replacement picture: ");
-	console.log($replacementImage);
-
-	$replacementImage = $( $(".pictures li").get(imageIndex) );
-	$replacementImage = $replacementImage.children("a").attr("href");
-	console.log("Replacement picture: ");
-	console.log($replacementImage);
+	changeImage('backwards');
 });
 
