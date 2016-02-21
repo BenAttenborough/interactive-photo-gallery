@@ -9,6 +9,7 @@ function getPictures(searchTerm) {
 			html += "	<a href='img/" + pictures[index].fileurl + "'>";
 			html += "		<img src='img/Thumbnails/" + pictures[index].fileurl + "'";
 			html += "			 alt='" + pictures[index].alttext + "'";
+			html += "			 data-id=" + index;
 			html += "		>";
 			html += "	</a>";
 			html += "</li>";

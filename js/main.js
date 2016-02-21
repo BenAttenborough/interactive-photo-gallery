@@ -96,9 +96,12 @@ function assignClickFunctions() {
 		//perhaps could assign image numbers to images when search generates them?
 		//Problem with using object is that we cannot get image number from generated image
 		//perhaps get index from title?
+		//$( $(".pictures li img").get(2) ).attr("data-id")
+		//$( $(".pictures li a").get(2) ).children("img").attr("data-id")
 
+		console.log($(this).children("img").attr("data-id"));
 
-		imageIndex = $(this).parent().index();
+		imageIndex = $(this).children("img").attr("data-id");
 		$mediaContainer.html( getMedia(pictures[imageIndex]) );
 		$("#overlay").show();
 		$(document).scrollTop( 0 );
