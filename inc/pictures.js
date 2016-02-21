@@ -66,16 +66,16 @@ var pictures = [
     "alttext":  "I did a tour of a cave today and the view of the landscape below was breathtaking."
     },
     {
-	"title":    "Treehouse", 
-    "fileurl": 	"http://img.youtube.com/vi/Wnr8LRO7CiA/0.jpg",
-    "type":		"youtube",
-    "youtube":  "http://www.youtube.com/embed/Wnr8LRO7CiA",
-    "alttext":  "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
-    },
-    {
 	"title":    "Bluebells", 
     "fileurl": "12.jpg",
     "type":		"picture",
+    "alttext":  "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
+    },
+    {
+	"title":    "Treehouse", 
+    "fileurl": 	"treehouse-youtube.jpg",
+    "type":		"youtube",
+    "youtube":  "http://www.youtube.com/embed/Wnr8LRO7CiA",
     "alttext":  "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
     },
 ];

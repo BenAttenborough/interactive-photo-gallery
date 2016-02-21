@@ -31,7 +31,7 @@ function getMedia(media) {
 			html = "<img src='img/" + media.fileurl + "'>";
 			break;
 		case "youtube":
-			html  = "<iframe width='100%' height='50%'";
+			html  = "<iframe width='100%' height='100%'";
 			// html += "src='" + media.fileurl + "'>";
 			html += "src='" + media.youtube + "'>";
 			html += "</iframe>";
@@ -112,6 +112,7 @@ function assignClickFunctions() {
 		// $image.attr("src", imageLocation);
 
 		$("#overlay").show();
+		$(document).scrollTop( 0 );
 		// Bind keynav to document when overlay shown
 		bindKeyNav();
 		var captionText = $(this).children("img").attr("alt");

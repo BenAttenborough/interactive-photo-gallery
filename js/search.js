@@ -5,27 +5,13 @@ function getPictures(searchTerm) {
 	var imageCount = 0;
 	for (var index in pictures) {
 		if ( pictures[index].alttext.indexOf( searchTerm ) > 0 || searchTerm === "" ) {
-			
-			if ( pictures[index].type === "picture" ) {
-				html += "<li style='display:none'>";
-				html += "	<a href='img/" + pictures[index].fileurl + "'>";
-				html += "		<img src='img/Thumbnails/" + pictures[index].fileurl + "'";
-				html += "			 alt='" + pictures[index].alttext + "'";
-				html += "		>";
-				html += "	</a>";
-				html += "</li>";
-			}
-
-			if ( pictures[index].type === "youtube" ) {
-				html += "<li style='display:none'>";
-				html += "	<a href='" + pictures[index].fileurl + "'>";
-				html += "		<img src='" + pictures[index].fileurl + "'";
-				html += "			 alt='" + pictures[index].alttext + "'";
-				html += "		>";
-				html += "	</a>";
-				html += "</li>";
-			}
-
+			html += "<li style='display:none'>";
+			html += "	<a href='img/" + pictures[index].fileurl + "'>";
+			html += "		<img src='img/Thumbnails/" + pictures[index].fileurl + "'";
+			html += "			 alt='" + pictures[index].alttext + "'";
+			html += "		>";
+			html += "	</a>";
+			html += "</li>";
 			imageCount ++;
 		}
 	}
