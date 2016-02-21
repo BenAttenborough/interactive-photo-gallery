@@ -55,8 +55,26 @@ function changeImage(direction) {
 	//We are not simply getting images from the pictures object!
 	//We must get them from the page
 	//May be able to do something
+
+	/*
 	$mediaContainer.html( getMedia(pictures[imageIndex]) );
 	$caption.html( '<p>' + pictures[imageIndex].alttext + '</p>' )
+	*/
+
+	 // Original code:
+
+	 //slowly making this work but needs to work with other media types
+	 //Anyway way too tired to get this working now!
+
+	$imageData = $( $(".pictures li a").get(imageIndex) ).attr("href");
+	// $imageData = $(".pictures li").get(imageIndex);
+	$replacementImage = $imageData;
+	console.log("imageData: " + $imageData);
+	// $replacementAltText = $imageData.children("a").children("img").attr("alt");
+	
+	// Next line needs altering
+	$mediaContainer.children("img").attr("src", $replacementImage);
+	$caption.html($replacementAltText);
 }
 
 function addElements(){
