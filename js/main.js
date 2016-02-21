@@ -92,6 +92,12 @@ function unbindKeyNav() {
 function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
+		//Next line needs to be altered to get correct index!
+		//perhaps could assign image numbers to images when search generates them?
+		//Problem with using object is that we cannot get image number from generated image
+		//perhaps get index from title?
+
+
 		imageIndex = $(this).parent().index();
 		$mediaContainer.html( getMedia(pictures[imageIndex]) );
 		$("#overlay").show();

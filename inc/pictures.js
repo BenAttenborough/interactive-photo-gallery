@@ -76,7 +76,7 @@ var pictures = [
     "fileurl": 	"treehouse-youtube.jpg",
     "type":		"youtube",
     "embed":  "http://www.youtube.com/embed/Wnr8LRO7CiA",
-    "alttext":  "Join <a href='http://trhou.se/148kMOY'>Treehouse</a> today, start your free trial and become our next success story!."
+    "alttext":  "Join Treehouse today, start your free trial and become our next success story!"
     },
     {
 	"title":    "DB10", 
