@@ -75,7 +75,21 @@ var pictures = [
 	"title":    "Treehouse", 
     "fileurl": 	"treehouse-youtube.jpg",
     "type":		"youtube",
-    "youtube":  "http://www.youtube.com/embed/Wnr8LRO7CiA",
-    "alttext":  "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
+    "embed":  "http://www.youtube.com/embed/Wnr8LRO7CiA",
+    "alttext":  "Join <a href='http://trhou.se/148kMOY'>Treehouse</a> today, start your free trial and become our next success story!."
+    },
+    {
+	"title":    "DB10", 
+    "fileurl": 	"DB10-youtube.jpg",
+    "type":		"youtube",
+    "embed":  "http://www.youtube.com/embed/Jl3M3rs-j-A",
+    "alttext":  "James Bond Spectre stunt driver Mark Higgins unveils the Aston Martin DB10 and tells Eastlife.co.uk magazine about life as a daredevil. Interviewed at the Grange Aston Martin dealership in Brentwood Essex."
+    },
+    {
+	"title":    "Craig Charles Mix", 
+    "fileurl": 	"craig-charles.jpg",
+    "type":		"mixcloud",
+    "embed":  "https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2FCraigCharles%2Fthe-craig-charles-mystery-mix%2F&light=1",
+    "alttext":  "This is a mystery mix from your favourite funkster, Craig Charles! Get some funk in your trunk!"
     },
 ];

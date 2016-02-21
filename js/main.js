@@ -11,19 +11,6 @@ var $replacementImage;
 var $replacementAltText;
 var fullHeight;
 
-// function appendFileContainer(fileName) {
-// 	var fileType = getFileType(fileName);
-// 	var html = "";
-// 	console.log(fileType);
-// 	switch (fileType) {
-// 		case "jpg":
-// 			console.log("Jpeg");
-// 			html = "<img src='" + fileName + "'>"
-// 			$(".media-container").append(html);
-// 			break;
-// 	}
-// }
-
 function getMedia(media) {
 	html = "";
 	switch (media.type) {
@@ -33,7 +20,13 @@ function getMedia(media) {
 		case "youtube":
 			html  = "<iframe width='100%' height='100%'";
 			// html += "src='" + media.fileurl + "'>";
-			html += "src='" + media.youtube + "'>";
+			html += "src='" + media.embed + "'>";
+			html += "</iframe>";
+			break;
+		case "mixcloud":
+			html  = "<iframe width='100%' height='100%'";
+			// html += "src='" + media.fileurl + "'>";
+			html += "src='" + media.embed + "'>";
 			html += "</iframe>";
 			break;
 		default:
@@ -58,11 +51,8 @@ function changeImage(direction) {
 		imageIndex = 0;
 		}
 	}
-	$imageData = $( $(".pictures li").get(imageIndex) );
-	// $replacementImage = $imageData.children("a").("href");
-	$replacementAltText = $imageData.children("a").children("img").attr("alt");
-	// $image.attr("src", $replacementImage);
-	$caption.html($replacementAltText);
+	$mediaContainer.html( getMedia(pictures[imageIndex]) );
+	$caption.html( '<p>' + pictures[imageIndex].alttext + '</p>' )
 }
 
 function addElements(){
@@ -103,20 +93,13 @@ function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
 		imageIndex = $(this).parent().index();
-		// var imageLocation = $(this).attr("href");
-		// Need to get the correct object
 		$mediaContainer.html( getMedia(pictures[imageIndex]) );
-		// $mediaContainer.html("<img src='" + imageLocation + "'>");
-		// appendFileContainer(imageLocation);
-		//
-		// $image.attr("src", imageLocation);
-
 		$("#overlay").show();
 		$(document).scrollTop( 0 );
 		// Bind keynav to document when overlay shown
 		bindKeyNav();
-		var captionText = $(this).children("img").attr("alt");
-		$caption.text(captionText);
+		var captionText = pictures[imageIndex].alttext;
+		$caption.html(captionText);
 		//Get image index (location of image in list) for use in prev / next buttons
 	});
 
