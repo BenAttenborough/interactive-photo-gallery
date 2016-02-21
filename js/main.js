@@ -3,8 +3,7 @@ var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/p
 var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
 var $instructions =$("<p>Use arrow keys or buttons to cycle images</p>");
-// var $image = $("<img>");
-var $image = $("<div class='media-container'>");
+var $mediaContainer = $("<div class='media-container'>");
 var $caption = $("<p></p>");
 var imageIndex;
 var $imageData;
@@ -12,21 +11,36 @@ var $replacementImage;
 var $replacementAltText;
 var fullHeight;
 
-function getFileType(fileName) {
-	return fileName.substr(fileName.lastIndexOf('.') + 1);
-}
+// function appendFileContainer(fileName) {
+// 	var fileType = getFileType(fileName);
+// 	var html = "";
+// 	console.log(fileType);
+// 	switch (fileType) {
+// 		case "jpg":
+// 			console.log("Jpeg");
+// 			html = "<img src='" + fileName + "'>"
+// 			$(".media-container").append(html);
+// 			break;
+// 	}
+// }
 
-function appendFileContainer(fileName) {
-	var fileType = getFileType(fileName);
-	var html = "";
-	console.log(fileType);
-	switch (fileType) {
-		case "jpg":
-			console.log("Jpeg");
-			html = "<img src='" + fileName + "'>"
-			$(".media-container").append(html);
+function getMedia(media) {
+	html = "";
+	switch (media.type) {
+		case "picture":
+			html = "<img src='img/" + media.fileurl + "'>";
+			break;
+		case "youtube":
+			html  = "<iframe width='100%' height='50%'";
+			// html += "src='" + media.fileurl + "'>";
+			html += "src='" + media.youtube + "'>";
+			html += "</iframe>";
+			break;
+		default:
+			html = "<p>Filetype: " + media.type + " is not recognised</p>";
 			break;
 	}
+	return html;
 }
 
 function changeImage(direction) {
@@ -45,15 +59,15 @@ function changeImage(direction) {
 		}
 	}
 	$imageData = $( $(".pictures li").get(imageIndex) );
-	$replacementImage = $imageData.children("a").attr("href");
+	// $replacementImage = $imageData.children("a").("href");
 	$replacementAltText = $imageData.children("a").children("img").attr("alt");
-	$image.attr("src", $replacementImage);
+	// $image.attr("src", $replacementImage);
 	$caption.html($replacementAltText);
 }
 
 function addElements(){
 	$contentDiv.append($instructions);
-	$contentDiv.append($image);
+	$contentDiv.append($mediaContainer);
 	$contentDiv.append($caption);
 	$overlay.append($previousBtn);
 	$overlay.append($contentDiv);
@@ -88,8 +102,12 @@ function unbindKeyNav() {
 function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
-		var imageLocation = $(this).attr("href");
-		appendFileContainer(imageLocation);
+		imageIndex = $(this).parent().index();
+		// var imageLocation = $(this).attr("href");
+		// Need to get the correct object
+		$mediaContainer.html( getMedia(pictures[imageIndex]) );
+		// $mediaContainer.html("<img src='" + imageLocation + "'>");
+		// appendFileContainer(imageLocation);
 		//
 		// $image.attr("src", imageLocation);
 
@@ -99,7 +117,6 @@ function assignClickFunctions() {
 		var captionText = $(this).children("img").attr("alt");
 		$caption.text(captionText);
 		//Get image index (location of image in list) for use in prev / next buttons
-		imageIndex = $(this).parent().index();
 	});
 
 	$("#overlay").click( function(){
