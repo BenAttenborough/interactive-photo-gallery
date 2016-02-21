@@ -25,7 +25,15 @@ function getPictures(searchTerm) {
 	}
 	if (imageCount === 0) {
 		html += "<h2>Sorry no images found for " + searchTerm + "</h2>";
+	} 
+	if (imageCount === 1) {
+		$(".col-prev a").hide();
+		$(".col-next a").hide();
+	} else {
+		$(".col-prev a").show();
+		$(".col-next a").show();
 	}
+	
 	html += "</ul>";
 	$(".pictures")
 		.html( html );
@@ -34,6 +42,5 @@ function getPictures(searchTerm) {
 $(".search__form__input").keyup( function() {
 	searchTerm = $(".search__form__input").val()
 	getPictures(searchTerm);
-	addElements();
 	assignClickFunctions();
 });

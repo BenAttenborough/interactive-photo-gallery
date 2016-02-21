@@ -1,4 +1,4 @@
-var $overlay = $("<div id='overlay'></div>");
+var $overlay = $("<div id='overlay' class='clearfix'></div>");
 var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/previousBtn.png' class='nav-btn'></a></div>");
 var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
@@ -31,15 +31,13 @@ function changeImage(direction) {
 function addElements(){
 	$contentDiv.append($image);
 	$contentDiv.append($caption);
-	// if overlay exists remove it first
-	if( $('#overlay').length ) {
-		console.log("Removing overlay");
-		$('#overlay').remove();  
-	}
 	$overlay.append($previousBtn);
 	$overlay.append($contentDiv);
 	$overlay.append($nextBtn);
 	$("body").prepend($overlay);
+	//Test
+	fullHeight = $( "body" ).height();
+	$overlay.height( fullHeight );
 }
 
 function assignClickFunctions() {
