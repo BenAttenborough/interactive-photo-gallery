@@ -5,6 +5,10 @@ var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextB
 var $image = $("<img>");
 var $caption = $("<p></p>");
 var imageIndex;
+var $imageData;
+var $replacementImage;
+var $replacementAltText;
+var fullHeight;
 
 function changeImage(direction) {
 	event.preventDefault();
@@ -26,7 +30,7 @@ function changeImage(direction) {
 	$replacementAltText = $imageData.children("a").children("img").attr("alt");
 	$image.attr("src", $replacementImage);
 	$caption.html($replacementAltText);
-};
+}
 
 function addElements(){
 	$contentDiv.append($image);
@@ -35,7 +39,6 @@ function addElements(){
 	$overlay.append($contentDiv);
 	$overlay.append($nextBtn);
 	$("body").prepend($overlay);
-	//Test
 	fullHeight = $( "body" ).height();
 	$overlay.height( fullHeight );
 }
