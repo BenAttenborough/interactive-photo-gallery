@@ -72,6 +72,17 @@ function assignClickFunctions() {
 
 }
 
+$(document).keydown( function(event) {
+	console.log("Key code: ");
+	console.log(event);
+	if (event.which === 37) {
+		console.log("left arrow pressed");
+	}
+	if (event.which === 39) {
+		console.log("right arrow pressed");
+	}
+}); 
+
 addElements();
 assignClickFunctions();
 
