@@ -3,8 +3,8 @@ var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/p
 var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
 var $instructions =$("<p>Use arrow keys or buttons to cycle images</p>");
-var $image = $("<img>");
-// var $image = $("<div class='media-container'>");
+// var $image = $("<img>");
+var $image = $("<div class='media-container'>");
 var $caption = $("<p></p>");
 var imageIndex;
 var $imageData;
@@ -89,9 +89,9 @@ function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
 		var imageLocation = $(this).attr("href");
-		// appendFileContainer(imageLocation);
+		appendFileContainer(imageLocation);
 		//
-		$image.attr("src", imageLocation);
+		// $image.attr("src", imageLocation);
 
 		$("#overlay").show();
 		// Bind keynav to document when overlay shown
