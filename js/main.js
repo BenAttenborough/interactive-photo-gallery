@@ -51,6 +51,10 @@ function changeImage(direction) {
 		imageIndex = 0;
 		}
 	}
+	//This is wrong! wrong! wrong!
+	//We are not simply getting images from the pictures object!
+	//We must get them from the page
+	//May be able to do something
 	$mediaContainer.html( getMedia(pictures[imageIndex]) );
 	$caption.html( '<p>' + pictures[imageIndex].alttext + '</p>' )
 }
