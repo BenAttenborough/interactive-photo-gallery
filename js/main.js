@@ -2,6 +2,7 @@ var $overlay = $("<div id='overlay' class='clearfix'></div>");
 var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/previousBtn.png' class='nav-btn'></a></div>");
 var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
+var $instructions =$("<p>Use arrow keys or buttons to cycle images</p>");
 var $image = $("<img>");
 var $caption = $("<p></p>");
 var imageIndex;
@@ -33,6 +34,7 @@ function changeImage(direction) {
 }
 
 function addElements(){
+	$contentDiv.append($instructions);
 	$contentDiv.append($image);
 	$contentDiv.append($caption);
 	$overlay.append($previousBtn);
@@ -43,6 +45,28 @@ function addElements(){
 	$overlay.height( fullHeight );
 }
 
+function bindKeyNav() {
+	$(document).bind( "keydown", function(event) {
+		switch (event.which) {
+			case 37:
+				changeImage('backwards');
+				break;
+			case 39:
+				changeImage('fowards');
+				break;
+			case 27:
+			case 81:
+				unbindKeyNav();
+				$("#overlay").hide();
+				break;
+		}
+	}); 
+}
+
+function unbindKeyNav() {
+	$(document).unbind( "keydown" );
+}
+
 function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
@@ -50,6 +74,8 @@ function assignClickFunctions() {
 		var imageLocation = $(this).attr("href");
 		$image.attr("src", imageLocation);
 		$("#overlay").show();
+		// Bind keynav to document when overlay shown
+		bindKeyNav();
 		var captionText = $(this).children("img").attr("alt");
 		$caption.text(captionText);
 		//Get image index (location of image in list) for use in prev / next buttons
@@ -57,6 +83,8 @@ function assignClickFunctions() {
 	});
 
 	$("#overlay").click( function(){
+		// Unbind keynav when overlay closed
+		unbindKeyNav();
 		$(this).hide();
 	});
 
@@ -71,17 +99,6 @@ function assignClickFunctions() {
 	});
 
 }
-
-$(document).keydown( function(event) {
-	console.log("Key code: ");
-	console.log(event);
-	if (event.which === 37) {
-		console.log("left arrow pressed");
-	}
-	if (event.which === 39) {
-		console.log("right arrow pressed");
-	}
-}); 
 
 addElements();
 assignClickFunctions();

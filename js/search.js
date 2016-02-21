@@ -19,9 +19,11 @@ function getPictures(searchTerm) {
 		html += "<h2>Sorry no images found for " + searchTerm + "</h2>";
 	} 
 	if (imageCount === 1) {
+		$($instructions).hide();
 		$(".col-prev a").hide();
 		$(".col-next a").hide();
 	} else {
+		$($instructions).show();
 		$(".col-prev a").show();
 		$(".col-next a").show();
 	}
