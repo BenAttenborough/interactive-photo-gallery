@@ -28,36 +28,51 @@ function changeImage(direction) {
 	$caption.html($replacementAltText);
 };
 
-$contentDiv.append($image);
-$contentDiv.append($caption);
-$overlay.append($previousBtn);
-$overlay.append($contentDiv);
-$overlay.append($nextBtn);
-$("body").prepend($overlay);
+function addElements(){
+	$contentDiv.append($image);
+	$contentDiv.append($caption);
+	// if overlay exists remove it first
+	if( $('#overlay').length ) {
+		console.log("Removing overlay");
+		$('#overlay').remove();  
+	}
+	$overlay.append($previousBtn);
+	$overlay.append($contentDiv);
+	$overlay.append($nextBtn);
+	$("body").prepend($overlay);
+}
+
+function assignClickFunctions() {
+	$(".pictures a").click( function(){
+		event.preventDefault();
+		console.log("Image clicked");
+		var imageLocation = $(this).attr("href");
+		$image.attr("src", imageLocation);
+		$("#overlay").show();
+		var captionText = $(this).children("img").attr("alt");
+		$caption.text(captionText);
+		//Get image index (location of image in list) for use in prev / next buttons
+		imageIndex = $(this).parent().index();
+	});
+
+	$("#overlay").click( function(){
+		$(this).hide();
+	});
+
+	$(".col-next a").click( function(event){
+		event.stopPropagation();
+		changeImage('fowards');
+	});
+
+	$(".col-prev a").click( function(event){
+		event.stopPropagation();
+		changeImage('backwards');
+	});
+
+}
+
+addElements();
+assignClickFunctions();
 
 
-$(".pictures a").click( function(){
-	event.preventDefault();
-	var imageLocation = $(this).attr("href");
-	$image.attr("src", imageLocation);
-	$("#overlay").show();
-	var captionText = $(this).children("img").attr("alt");
-	$caption.text(captionText);
-	//Get image index (location of image in list) for use in prev / next buttons
-	imageIndex = $(this).parent().index();
-});
-
-$("#overlay").click( function(){
-	$(this).hide();
-});
-
-$(".col-next a").click( function(event){
-	event.stopPropagation();
-	changeImage('fowards');
-});
-
-$(".col-prev a").click( function(event){
-	event.stopPropagation();
-	changeImage('backwards');
-});
 
