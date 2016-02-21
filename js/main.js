@@ -4,12 +4,30 @@ var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
 var $instructions =$("<p>Use arrow keys or buttons to cycle images</p>");
 var $image = $("<img>");
+// var $image = $("<div class='media-container'>");
 var $caption = $("<p></p>");
 var imageIndex;
 var $imageData;
 var $replacementImage;
 var $replacementAltText;
 var fullHeight;
+
+function getFileType(fileName) {
+	return fileName.substr(fileName.lastIndexOf('.') + 1);
+}
+
+function appendFileContainer(fileName) {
+	var fileType = getFileType(fileName);
+	var html = "";
+	console.log(fileType);
+	switch (fileType) {
+		case "jpg":
+			console.log("Jpeg");
+			html = "<img src='" + fileName + "'>"
+			$(".media-container").append(html);
+			break;
+	}
+}
 
 function changeImage(direction) {
 	event.preventDefault();
@@ -71,7 +89,10 @@ function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
 		var imageLocation = $(this).attr("href");
+		// appendFileContainer(imageLocation);
+		//
 		$image.attr("src", imageLocation);
+
 		$("#overlay").show();
 		// Bind keynav to document when overlay shown
 		bindKeyNav();
