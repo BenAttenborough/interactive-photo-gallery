@@ -70,7 +70,6 @@ function unbindKeyNav() {
 function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
-		console.log("Image clicked");
 		var imageLocation = $(this).attr("href");
 		$image.attr("src", imageLocation);
 		$("#overlay").show();
