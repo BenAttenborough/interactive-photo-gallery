@@ -1,6 +1,12 @@
 var searchTerm;
 
 function getPictures(searchTerm) {
+
+	// What I think would be a better approach would be to push the selected objects into a new object
+	// This object can then be used to populate the pictures but crucially also track the image id for the next previous
+	// buttons
+	// So could then hopefully remove the data-id tags
+
 	var html = "<ul>";
 	var imageCount = 0;
 	for (var index in pictures) {
