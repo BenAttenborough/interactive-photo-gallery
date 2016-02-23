@@ -77,7 +77,7 @@ function changeImage(direction) {
 	$caption.html($replacementAltText);
 }
 
-function addElements(){
+function addOverlay(){
 	$contentDiv.append($instructions);
 	$contentDiv.append($mediaContainer);
 	$contentDiv.append($caption);
@@ -152,7 +152,7 @@ function assignClickFunctions() {
 
 }
 
-addElements();
+addOverlay();
 assignClickFunctions();
 
 
