@@ -4,22 +4,37 @@ var searchTerm;
 var picturesHolder = [];
 
 /*
- * 
- *
- *
+ * 	Fetches pictures from pictures.js based on searchTerm, if searchTerm is empty or undefined it returns all pictures
+ * 	@PARAM searchTerm {string} Text to check each picture's alt-text againt 
+ *	@RETURN pictureHolder {array} An array of pictures which match the search term
  *
  */
-function getPictures(searchTerm) {
 
+function getPictures(searchTerm) {
 	picturesHolder = []
+	if ( searchTerm == undefined ) {
+		searchTerm = "";
+	}
+	searchTerm = searchTerm.toLowerCase()
 
 	for (var index in pictures) {
-		if ( pictures[index].alttext.indexOf( searchTerm ) > 0 || searchTerm === "" ) {
-			picturesHolder.push(pictures[index]);
+		
+		picture = pictures[index];
+		pictureAltText = pictures[index].alttext.toLowerCase();
+
+		if ( pictureAltText.indexOf( searchTerm ) > 0 || searchTerm === "" ) {
+			picturesHolder.push(picture);
 		}
+
 	}
 	return picturesHolder;
 }
+
+/*
+ *	Takes an array of pictures, builds html to display them and displays them on screen.
+ *	If no images are passed then displays message
+ *	@PARAM picturesHolder {array} An array of picture objects to display
+ */
 
 function displayPictures(picturesHolder) {
 	var html = "<ul>";
@@ -53,12 +68,15 @@ function displayPictures(picturesHolder) {
 }
 
 // Bind keypress to search box
-$(".search__form__input").keyup( function() {
-	searchTerm = $(".search__form__input").val();
-	displayPictures( getPictures(searchTerm) );
-	assignClickFunctions();
-});
+function createSearch() {
+	$(".search__form__input").keyup( function() {
+		searchTerm = $(".search__form__input").val();
+		displayPictures( getPictures(searchTerm) );
+		assignClickFunctions();
+	});
+}
 
+createSearch();
 // Initialise pictures
-displayPictures( getPictures("") );
+displayPictures( getPictures() );
 assignClickFunctions();

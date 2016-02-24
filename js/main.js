@@ -19,13 +19,11 @@ function getMedia(media) {
 			break;
 		case "youtube":
 			html  = "<iframe width='100%' height='100%'";
-			// html += "src='" + media.fileurl + "'>";
 			html += "src='" + media.embed + "'>";
 			html += "</iframe>";
 			break;
 		case "mixcloud":
 			html  = "<iframe width='100%' height='100%'";
-			// html += "src='" + media.fileurl + "'>";
 			html += "src='" + media.embed + "'>";
 			html += "</iframe>";
 			break;
@@ -109,6 +107,7 @@ function assignClickFunctions() {
 		$(this).hide();
 	});
 
+	// Unbind click functions to stop rebinding of buttons
 	$(".col-next a").unbind ("click");
 	$(".col-prev a").unbind ("click");
 
