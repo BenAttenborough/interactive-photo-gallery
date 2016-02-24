@@ -51,35 +51,8 @@ function changeImage(direction) {
 		imageIndex = 0;
 		}
 	}
-	//This is wrong! wrong! wrong!
-	//We are not simply getting images from the pictures object!
-	//We must get them from the page
-	//May be able to do something
-
-	
 	$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' )
-	
-
-	 // Original code:
-
-	 //slowly making this work but needs to work with other media types
-	 //Anyway way too tired to get this working now!
-
-
-	/*
-
-	$imageData = $( $(".pictures li a").get(imageIndex) ).attr("href");
-	// $imageData = $(".pictures li").get(imageIndex);
-	$replacementImage = $imageData;
-	console.log("imageData: " + $imageData);
-	// $replacementAltText = $imageData.children("a").children("img").attr("alt");
-	
-	// Next line needs altering
-	$mediaContainer.children("img").attr("src", $replacementImage);
-	$caption.html($replacementAltText);
-
-	*/
 }
 
 function addOverlay(){
@@ -117,27 +90,17 @@ function unbindKeyNav() {
 }
 
 function assignClickFunctions() {
+	console.log("Assigning click functions")
 	$(".pictures a").click( function(){
 		event.preventDefault();
-		//Next line needs to be altered to get correct index!
-		//perhaps could assign image numbers to images when search generates them?
-		//Problem with using object is that we cannot get image number from generated image
-		//perhaps get index from title?
-		//$( $(".pictures li img").get(2) ).attr("data-id")
-		//$( $(".pictures li a").get(2) ).children("img").attr("data-id")
-
-		//Problem is how to get correct imageIndex - perhaps do this with the li number?
-		//Perhaps use index?
 		imageIndex = $(this).parent().index();
 		console.log("imageIndex: " + imageIndex)
 		$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 		$("#overlay").show();
 		$(document).scrollTop( 0 );
-		// Bind keynav to document when overlay shown
 		bindKeyNav();
 		var captionText = picturesHolder[imageIndex].alttext;
 		$caption.html(captionText);
-		//Get image index (location of image in list) for use in prev / next buttons
 	});
 
 	$("#overlay").click( function(){
@@ -146,17 +109,21 @@ function assignClickFunctions() {
 		$(this).hide();
 	});
 
+	$(".col-next a").unbind ("click");
+	$(".col-prev a").unbind ("click");
+
 	$(".col-next a").click( function(event){
 		event.stopPropagation();
 		changeImage('fowards');
+		console.log("forwards button pressed");
 	});
 
 	$(".col-prev a").click( function(event){
 		event.stopPropagation();
 		changeImage('backwards');
+		console.log("backwards button pressed");
 	});
 
 }
 
 addOverlay();
-assignClickFunctions();
