@@ -1,3 +1,7 @@
+/*
+ *  The model
+ */
+
 var pictures = [
 	{
 	"title":    "Hay bales", 

@@ -1,10 +1,15 @@
-// Gallery
+/*
+ *	Code to control of the program
+ */
+
+ /*
+ *	---GALLERY---
+ */
 
 /*
  * 	Fetches pictures from pictures.js based on searchTerm, if searchTerm is empty or undefined it returns all pictures
  * 	@PARAM searchTerm {string} Text to check each picture's alt-text againt 
  *	@RETURN pictureHolder {array} An array of pictures which match the search term
- *
  */
 
 function getPictures(searchTerm) {
@@ -23,6 +28,14 @@ function getPictures(searchTerm) {
 	return picturesHolder;
 }
 
+/*
+ * 	Binds keyup function to searchbar. When user presses key the resultant string is
+ *  passed to getPictures() which returns relevant pictures which are then displayed by
+ *  displayPictures(). Click events are then bound to each picture with assignClickFunctions()
+ * 	@PARAM none
+ *	@RETURN none
+ */
+
 function createSearch() {
 	$(".search__form__input").keyup( function() {
 		searchTerm = $(".search__form__input").val();
@@ -31,7 +44,15 @@ function createSearch() {
 	});
 }
 
-// Lightbox
+/*
+ *	---LIGHTBOX---
+ */
+
+/*
+ * 	Takes a media object and returns correctly formatted html for the media type
+ * 	@PARAM media {object} The picture object, which should have a .media attribute
+ *	@RETURN html {string} Correctly formatted html for the media type
+ */
 
 function getMedia(media) {
 	html = "";
@@ -56,6 +77,12 @@ function getMedia(media) {
 	return html;
 }
 
+/*
+ * 	Fetches the next bit of media based on direction arrow clicked
+ * 	@PARAM direction {string} the direction of the next media to fetch
+ *	@RETURN none
+ */
+
 function changeImage(direction) {
 	event.preventDefault();
 	if (direction === 'backwards') {
@@ -75,6 +102,23 @@ function changeImage(direction) {
 	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' )
 }
 
+/*
+ * 	Unbinds keydown event from document
+ * 	@PARAM none
+ *	@RETURN none
+ */
+
+function unbindKeyNav() {
+	$(document).unbind( "keydown" );
+}
+
+/*
+ * 	Binds keydown to the document to provide keyboard direction control via cursor keys, 
+ *  plus escape from lightbox via escape or q keys
+ * 	@PARAM none
+ *	@RETURN none
+ */
+
 function bindKeyNav() {
 	$(document).bind( "keydown", function(event) {
 		switch (event.which) {
@@ -93,16 +137,16 @@ function bindKeyNav() {
 	}); 
 }
 
-function unbindKeyNav() {
-	$(document).unbind( "keydown" );
-}
+/*
+ * 	Assigns click events to the various elemnts
+ * 	@PARAM none
+ *	@RETURN none
+ */
 
 function assignClickFunctions() {
-	console.log("Assigning click functions")
 	$(".pictures a").click( function(){
 		event.preventDefault();
 		imageIndex = $(this).parent().index();
-		console.log("imageIndex: " + imageIndex)
 		$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 		$("#overlay").show();
 		$(document).scrollTop( 0 );
@@ -124,13 +168,11 @@ function assignClickFunctions() {
 	$(".col-next a").click( function(event){
 		event.stopPropagation();
 		changeImage('fowards');
-		console.log("forwards button pressed");
 	});
 
 	$(".col-prev a").click( function(event){
 		event.stopPropagation();
 		changeImage('backwards');
-		console.log("backwards button pressed");
 	});
 
 }

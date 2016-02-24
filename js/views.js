@@ -2,7 +2,15 @@
  *	Code to handle visual elements only
  */
 
-// Gallery
+/*
+ *	---GALLERY---
+ */
+
+/*
+ *	Takes an array of pictures, builds html to display them and displays them on screen.
+ *	If no images are passed then displays message
+ *	@PARAM picturesHolder {array} An array of picture objects to display
+ */
 
 function displayPictures(picturesHolder) {
 	var html = "<ul>";
@@ -35,7 +43,9 @@ function displayPictures(picturesHolder) {
 	$(".pictures li").fadeIn("slow");
 }
 
-// Lightbox
+/*
+ *	---LIGHTBOX---
+ */
 
 var $overlay = $("<div id='overlay' class='clearfix'></div>");
 var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/previousBtn.png' class='nav-btn'></a></div>");
@@ -48,6 +58,11 @@ var $replacementImage;
 var $replacementAltText;
 var fullHeight;
 
+/*
+ *	Appends an overlay to the screen, this is initial hidden in CSS
+ *	@PARAM none
+ *  @RETURN none
+ */
 function addOverlay(){
 	$contentDiv.append($instructions);
 	$contentDiv.append($mediaContainer);
