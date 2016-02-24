@@ -42,10 +42,10 @@ function changeImage(direction) {
 		if (imageIndex>0) {
 		imageIndex--;
 		} else {
-		imageIndex = $(".pictures li").length -1;
+		imageIndex = picturesHolder.length -1;
 		}
 	} else {
-		if (imageIndex<$(".pictures li").length -1) {
+		if (imageIndex < picturesHolder.length -1) {
 		imageIndex++;
 		} else {
 		imageIndex = 0;
@@ -56,15 +56,18 @@ function changeImage(direction) {
 	//We must get them from the page
 	//May be able to do something
 
-	/*
-	$mediaContainer.html( getMedia(pictures[imageIndex]) );
-	$caption.html( '<p>' + pictures[imageIndex].alttext + '</p>' )
-	*/
+	
+	$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
+	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' )
+	
 
 	 // Original code:
 
 	 //slowly making this work but needs to work with other media types
 	 //Anyway way too tired to get this working now!
+
+
+	/*
 
 	$imageData = $( $(".pictures li a").get(imageIndex) ).attr("href");
 	// $imageData = $(".pictures li").get(imageIndex);
@@ -75,6 +78,8 @@ function changeImage(direction) {
 	// Next line needs altering
 	$mediaContainer.children("img").attr("src", $replacementImage);
 	$caption.html($replacementAltText);
+
+	*/
 }
 
 function addOverlay(){
@@ -121,15 +126,16 @@ function assignClickFunctions() {
 		//$( $(".pictures li img").get(2) ).attr("data-id")
 		//$( $(".pictures li a").get(2) ).children("img").attr("data-id")
 
-		console.log($(this).children("img").attr("data-id"));
-
-		imageIndex = $(this).children("img").attr("data-id");
-		$mediaContainer.html( getMedia(pictures[imageIndex]) );
+		//Problem is how to get correct imageIndex - perhaps do this with the li number?
+		//Perhaps use index?
+		imageIndex = $(this).parent().index();
+		console.log("imageIndex: " + imageIndex)
+		$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 		$("#overlay").show();
 		$(document).scrollTop( 0 );
 		// Bind keynav to document when overlay shown
 		bindKeyNav();
-		var captionText = pictures[imageIndex].alttext;
+		var captionText = picturesHolder[imageIndex].alttext;
 		$caption.html(captionText);
 		//Get image index (location of image in list) for use in prev / next buttons
 	});
