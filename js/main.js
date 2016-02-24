@@ -3,8 +3,7 @@ var $previousBtn = $("<div class='col-prev clearfix'><a href='#'><img src='img/p
 var $contentDiv = $("<div class='col-main clearfix'></div>");
 var $nextBtn = $("<div class='col-next clearfix'><a href='#'><img src='img/nextBtn.png' class='nav-btn'></a></div>");
 var $instructions =$("<p>Use arrow keys or buttons to cycle images</p>");
-var $image = $("<img>");
-// var $image = $("<div class='media-container'>");
+var $mediaContainer = $("<div class='media-container'>");
 var $caption = $("<p></p>");
 var imageIndex;
 var $imageData;
@@ -12,21 +11,29 @@ var $replacementImage;
 var $replacementAltText;
 var fullHeight;
 
-function getFileType(fileName) {
-	return fileName.substr(fileName.lastIndexOf('.') + 1);
-}
-
-function appendFileContainer(fileName) {
-	var fileType = getFileType(fileName);
-	var html = "";
-	console.log(fileType);
-	switch (fileType) {
-		case "jpg":
-			console.log("Jpeg");
-			html = "<img src='" + fileName + "'>"
-			$(".media-container").append(html);
+function getMedia(media) {
+	html = "";
+	switch (media.type) {
+		case "picture":
+			html = "<img src='img/" + media.fileurl + "'>";
+			break;
+		case "youtube":
+			html  = "<iframe width='100%' height='100%'";
+			// html += "src='" + media.fileurl + "'>";
+			html += "src='" + media.embed + "'>";
+			html += "</iframe>";
+			break;
+		case "mixcloud":
+			html  = "<iframe width='100%' height='100%'";
+			// html += "src='" + media.fileurl + "'>";
+			html += "src='" + media.embed + "'>";
+			html += "</iframe>";
+			break;
+		default:
+			html = "<p>Filetype: " + media.type + " is not recognised</p>";
 			break;
 	}
+	return html;
 }
 
 function changeImage(direction) {
@@ -35,25 +42,49 @@ function changeImage(direction) {
 		if (imageIndex>0) {
 		imageIndex--;
 		} else {
-		imageIndex = $(".pictures li").length -1;
+		imageIndex = picturesHolder.length -1;
 		}
 	} else {
-		if (imageIndex<$(".pictures li").length -1) {
+		if (imageIndex < picturesHolder.length -1) {
 		imageIndex++;
 		} else {
 		imageIndex = 0;
 		}
 	}
-	$imageData = $( $(".pictures li").get(imageIndex) );
-	$replacementImage = $imageData.children("a").attr("href");
-	$replacementAltText = $imageData.children("a").children("img").attr("alt");
-	$image.attr("src", $replacementImage);
+	//This is wrong! wrong! wrong!
+	//We are not simply getting images from the pictures object!
+	//We must get them from the page
+	//May be able to do something
+
+	
+	$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
+	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' )
+	
+
+	 // Original code:
+
+	 //slowly making this work but needs to work with other media types
+	 //Anyway way too tired to get this working now!
+
+
+	/*
+
+	$imageData = $( $(".pictures li a").get(imageIndex) ).attr("href");
+	// $imageData = $(".pictures li").get(imageIndex);
+	$replacementImage = $imageData;
+	console.log("imageData: " + $imageData);
+	// $replacementAltText = $imageData.children("a").children("img").attr("alt");
+	
+	// Next line needs altering
+	$mediaContainer.children("img").attr("src", $replacementImage);
 	$caption.html($replacementAltText);
+
+	*/
 }
 
-function addElements(){
+function addOverlay(){
 	$contentDiv.append($instructions);
-	$contentDiv.append($image);
+	$contentDiv.append($mediaContainer);
 	$contentDiv.append($caption);
 	$overlay.append($previousBtn);
 	$overlay.append($contentDiv);
@@ -88,18 +119,25 @@ function unbindKeyNav() {
 function assignClickFunctions() {
 	$(".pictures a").click( function(){
 		event.preventDefault();
-		var imageLocation = $(this).attr("href");
-		// appendFileContainer(imageLocation);
-		//
-		$image.attr("src", imageLocation);
+		//Next line needs to be altered to get correct index!
+		//perhaps could assign image numbers to images when search generates them?
+		//Problem with using object is that we cannot get image number from generated image
+		//perhaps get index from title?
+		//$( $(".pictures li img").get(2) ).attr("data-id")
+		//$( $(".pictures li a").get(2) ).children("img").attr("data-id")
 
+		//Problem is how to get correct imageIndex - perhaps do this with the li number?
+		//Perhaps use index?
+		imageIndex = $(this).parent().index();
+		console.log("imageIndex: " + imageIndex)
+		$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 		$("#overlay").show();
+		$(document).scrollTop( 0 );
 		// Bind keynav to document when overlay shown
 		bindKeyNav();
-		var captionText = $(this).children("img").attr("alt");
-		$caption.text(captionText);
+		var captionText = picturesHolder[imageIndex].alttext;
+		$caption.html(captionText);
 		//Get image index (location of image in list) for use in prev / next buttons
-		imageIndex = $(this).parent().index();
 	});
 
 	$("#overlay").click( function(){
@@ -120,7 +158,7 @@ function assignClickFunctions() {
 
 }
 
-addElements();
+addOverlay();
 assignClickFunctions();
 
 

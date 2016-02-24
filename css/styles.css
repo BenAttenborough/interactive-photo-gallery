@@ -115,6 +115,10 @@ h1, h2, h3, h4, p, a {
 	width: 100%;
 }
 
+.media-container iframe {
+	height: 80vh;
+}
+
 /*
  * OVERLAY
  * 
@@ -140,6 +144,7 @@ h1, h2, h3, h4, p, a {
 
 #overlay .col-main {
 	width: 60%;
+	height: 100%;
 	float: left;
 }
 
