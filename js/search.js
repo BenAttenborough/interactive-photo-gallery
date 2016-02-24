@@ -18,11 +18,12 @@ function getPictures(searchTerm) {
 			picturesHolder.push(pictures[index]);
 		}
 	}
+	return picturesHolder;
+}
 
+function displayPictures(picturesHolder) {
 	var html = "<ul>";
 	for (var index in picturesHolder) {
-		// console.log("Picture title: " + picturesHolder[index].title);
-
 		html += "<li style='display:none'>";
 		html += "	<a href='img/" + picturesHolder[index].fileurl + "'>";
 		html += "		<img src='img/Thumbnails/" + picturesHolder[index].fileurl + "'";
@@ -54,10 +55,10 @@ function getPictures(searchTerm) {
 // Bind keypress to search box
 $(".search__form__input").keyup( function() {
 	searchTerm = $(".search__form__input").val();
-	getPictures(searchTerm);
+	displayPictures( getPictures(searchTerm) );
 	assignClickFunctions();
 });
 
 // Initialise pictures
-getPictures("");
+displayPictures( getPictures("") );
 assignClickFunctions();
