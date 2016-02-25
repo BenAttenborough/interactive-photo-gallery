@@ -18,9 +18,9 @@ function getPictures(searchTerm) {
 		searchTerm = "";
 	}
 	searchTerm = searchTerm.toLowerCase();
-	for (var index in pictures) {
-		picture = pictures[index];
-		pictureAltText = pictures[index].alttext.toLowerCase();
+	for (i=0; i<pictures.length; i++) {
+		picture = pictures[i];
+		pictureAltText = pictures[i].alttext.toLowerCase();
 		if ( pictureAltText.indexOf( searchTerm ) > 0 || searchTerm === "" ) {
 			picturesHolder.push(picture);
 		}
