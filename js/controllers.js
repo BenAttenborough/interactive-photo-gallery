@@ -13,11 +13,11 @@
  */
 
 function getPictures(searchTerm) {
-	picturesHolder = []
-	if ( searchTerm == undefined ) {
+	picturesHolder = [];
+	if ( searchTerm === undefined ) {
 		searchTerm = "";
 	}
-	searchTerm = searchTerm.toLowerCase()
+	searchTerm = searchTerm.toLowerCase();
 	for (var index in pictures) {
 		picture = pictures[index];
 		pictureAltText = pictures[index].alttext.toLowerCase();
@@ -99,7 +99,7 @@ function changeImage(direction) {
 		}
 	}
 	$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
-	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' )
+	$caption.html( '<p>' + picturesHolder[imageIndex].alttext + '</p>' );
 }
 
 /*
