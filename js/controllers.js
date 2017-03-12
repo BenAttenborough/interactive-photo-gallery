@@ -132,6 +132,7 @@ function bindKeyNav() {
 			case 81:
 				unbindKeyNav();
 				$("#overlay").hide();
+				$("body").css('overflow', 'visible');
 				break;
 		}
 	}); 
@@ -149,6 +150,7 @@ function assignClickFunctions() {
 		imageIndex = $(this).parent().index();
 		$mediaContainer.html( getMedia(picturesHolder[imageIndex]) );
 		$("#overlay").show();
+		$("body").css('overflow', 'hidden');
 		$(document).scrollTop( 0 );
 		bindKeyNav();
 		var captionText = picturesHolder[imageIndex].alttext;
