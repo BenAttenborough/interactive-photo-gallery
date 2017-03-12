@@ -126,7 +126,7 @@ h1, h2, h3, h4, p, a {
 */
 
 #overlay {
-	position: absolute;
+	position: fixed;
 	display: none;
 	width: 100%;
 	height: 100%;
